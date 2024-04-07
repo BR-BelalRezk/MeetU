@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "MeetU",
   description: "Zoom clone => Next.js-Stream-Clerk",
+  icons: {
+    icon: "/icons/logo.svg",
+  },
 };
 
 export default function RootLayout({
