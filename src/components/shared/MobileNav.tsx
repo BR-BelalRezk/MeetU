@@ -38,12 +38,14 @@ export default function MobileNav() {
                   return (
                     <SheetClose asChild key={item.label}>
                       <li
-                        className={cn(
-                          "flex gap-5 items-center p-5 rounded-lg w-full max-w-60",
-                          { "bg-blue-1": isActive }
-                        )}
+                        className={cn("p-3 rounded-lg w-full max-w-60", {
+                          "bg-blue-1": isActive,
+                        })}
                       >
-                        <Link href={item.route}>
+                        <Link
+                          href={item.route}
+                          className="flex gap-5 items-center"
+                        >
                           <Image
                             src={item.imgUrl}
                             alt={item.label}

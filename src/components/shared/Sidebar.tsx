@@ -16,12 +16,12 @@ export default function Sidebar() {
           return (
             <li
               key={item.label}
-              className={cn(
-                "flex gap-5 items-center p-5 rounded-lg justify-start",
-                { "bg-blue-1": isActive }
-              )}
+              className={cn("p-3 rounded-lg", { "bg-blue-1": isActive })}
             >
-              <Link href={item.route}>
+              <Link
+                href={item.route}
+                className="flex gap-5 items-center justify-start"
+              >
                 <Image
                   src={item.imgUrl}
                   alt={item.label}
