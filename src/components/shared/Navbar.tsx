@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
+import { SignedIn, UserButton , SignedOut } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
@@ -18,7 +19,9 @@ export default function Navbar() {
         </p>
       </Link>
       <div className="flex items-center justify-between gap-5">
-        {/* CLERK - USER MANAGEMENT */}
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
         <MobileNav />
       </div>
     </nav>
