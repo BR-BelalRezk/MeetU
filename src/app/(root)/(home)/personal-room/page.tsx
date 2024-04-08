@@ -48,7 +48,7 @@ export default function PersonalRoom() {
 
   return (
     <section className=" flex size-full flex-col gap-10 text-white">
-      <h1 className=" text-3xl font-bold">PersonalRoom</h1>
+      <h1 className=" text-3xl font-bold">Personal Room</h1>
       <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
         <Table title="Topic" description={`${user?.username}'s Meeting Room`} />
         <Table title="Meeting ID" description={meetingId} />
