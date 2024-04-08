@@ -47,7 +47,7 @@ export default function MobileNav() {
                           className="flex gap-5 items-center"
                         >
                           <Image
-                            src={item.imgUrl}
+                            src={item.imgURL}
                             alt={item.label}
                             width={20}
                             height={20}
