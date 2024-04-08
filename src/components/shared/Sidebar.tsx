@@ -23,7 +23,7 @@ export default function Sidebar() {
                 className="flex gap-5 items-center justify-start"
               >
                 <Image
-                  src={item.imgUrl}
+                  src={item.imgURL}
                   alt={item.label}
                   width={25}
                   height={25}
