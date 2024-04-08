@@ -4,25 +4,34 @@ import {
   CallControls,
   CallParticipantsList,
   CallStatsButton,
+  CallingState,
   PaginatedGridLayout,
   SpeakerLayout,
+  useCallStateHooks,
 } from "@stream-io/video-react-sdk";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
-import { LayoutList } from "lucide-react";
+import { LayoutList, Users } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import EndCallButton from "./EndCallButton";
+import Loader from "./Loader";
 
 type callLayout = "grid" | "speaker-left" | "speaker-right";
 
 export default function MeetingRoom() {
+  const { useCallCallingState } = useCallStateHooks();
   const [layout, setLayout] = useState<callLayout>("speaker-left");
   const [showParicipants, setShowParicipants] = useState(false);
+  const searchParams = useSearchParams();
+  const isPersonalRoom = !!searchParams.get("personal");
+  const callCallingState = useCallCallingState();
+  if (callCallingState !== CallingState.JOINED) return <Loader />;
   const CallLayout = () => {
     switch (layout) {
       case "grid":
@@ -47,7 +56,7 @@ export default function MeetingRoom() {
           <CallParticipantsList onClose={() => setShowParicipants(false)} />
         </div>
       </div>
-      <div className="fixed bottom-0 flex w-full items-center justify-center gap-5">
+      <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
         <CallControls />
         <DropdownMenu>
           <div className="flex items-center">
@@ -71,8 +80,11 @@ export default function MeetingRoom() {
         </DropdownMenu>
         <CallStatsButton />
         <button onClick={() => setShowParicipants((prevState) => !prevState)}>
-          <div className=" cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]"></div>
+          <div className=" cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">
+            <Users size={20} className="text-white" />
+          </div>
         </button>
+        {!isPersonalRoom && <EndCallButton />}
       </div>
     </section>
   );
